@@ -1,3 +1,4 @@
+from random import choice
 from skill.assets.media import egg_timer_tunes
 
 
@@ -13,7 +14,7 @@ class AudioLoader:
 		if self.locale == 'de-DE':
 			boiling_scale = self.translate(boiling_scale)
 		boiling_time = AudioLoader.scale_to_time_mapping.get(boiling_scale, 7)
-		return AudioLoader.song_library[boiling_time]
+		return choice(AudioLoader.song_library[boiling_time])
 
 	@staticmethod
 	def translate(boiling_scale):
