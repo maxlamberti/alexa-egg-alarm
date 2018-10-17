@@ -31,4 +31,4 @@ if __name__ == '__main__':
 
 	LanguageAssets = SpeechLoader({'locale': 'en-EN'})
 	print(LanguageAssets.get_response('help'))
-	print(LanguageAssets.get_response('start_timer', speechcon='roger', boiling_scale='hard'))
+	print(LanguageAssets.get_response('start_timer', boiling_scale='hard'))

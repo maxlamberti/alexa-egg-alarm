@@ -39,7 +39,7 @@ def set_timer_intent(boiling_scale):
 
 	session.attributes['boiling_scale'] = boiling_scale
 
-	response = speech.get_response('start_timer', boiling_scale=boiling_scale, speechcon=speech.random_speechcon())
+	response = speech.get_response('start_timer', boiling_scale=boiling_scale)
 	song_library = AudioLoader(request)
 	song_url = song_library.get_song_url(boiling_scale)
 
