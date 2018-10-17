@@ -1,0 +1,3 @@
+[submodule "skill/assets"]
+	path = skill/assets
+	url = git@github.com:hexamax/egg-alarm-assets.git
