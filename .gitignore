@@ -1,6 +1,7 @@
 # added by me
 *.idea
 zappa_settings.json
+environment.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

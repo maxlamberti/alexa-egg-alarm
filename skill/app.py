@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
 
+import os
+import logging.config
 from flask import Flask
 from flask_ask import Ask, statement, question, session, audio, request
 
 from skill.audio import AudioLoader
 from skill.speech import SpeechLoader
+from skill.loggingconf import logging_config
 
+
+env = os.environ.get('ENVIRONMENT')
+
+logging.config.dictConfig(logging_config)
+logger = logging.getLogger(env)
 
 app = Flask(__name__)
 ask = Ask(app, "/")
 
 
 @app.route('/test')
-def test():
+def activity_test():
 	return "It's an eggciting world!"
 
 
