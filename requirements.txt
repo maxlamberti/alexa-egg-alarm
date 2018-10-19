@@ -13,7 +13,7 @@ colorama==0.3.9
 cryptography==2.3.1
 docutils==0.14
 durationpy==0.5
-Flask==0.12.1
+Flask==1.0.2
 Flask-Ask==0.9.8
 future==0.16.0
 hjson==3.0.1
@@ -27,7 +27,7 @@ MarkupSafe==1.0
 placebo==0.8.2
 pyasn1==0.4.4
 pycparser==2.19
-pyOpenSSL==17.0.0
+pyOpenSSL==18.0.0
 python-dateutil==2.6.1
 python-slugify==1.2.4
 PyYAML==3.13
