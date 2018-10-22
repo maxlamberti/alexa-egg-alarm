@@ -13,4 +13,4 @@ class InteractionModel:
 		self.corpus = locale_to_corpus_mapping
 
 	def get_response(self, label, locale, **kwargs):
-		return self.corpus[locale].get_response(label, **kwargs)
+		return self.corpus[locale][label].format(**kwargs)
