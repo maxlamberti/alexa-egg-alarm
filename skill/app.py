@@ -12,11 +12,12 @@ from skill.database import DatabaseConnector
 
 env = os.environ.get('ENVIRONMENT')
 default_locale = os.environ.get('DEFAULT_LOCALE')
+region = os.environ.get('REGION')
 
 logging.config.dictConfig(logging_config)
 logger = logging.getLogger(env)
 
-db = DatabaseConnector()
+db = DatabaseConnector(region)
 
 interaction_model = InteractionModel()
 

@@ -10,8 +10,9 @@ logger = logging.getLogger(__name__)
 
 class DatabaseConnector:
 
-	def __init__(self):
-		dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
+	def __init__(self, region):
+
+		dynamodb = boto3.resource('dynamodb', region_name=region)
 		self.table = dynamodb.Table('egg-timer')
 
 	def get_user(self, alexa_id):
@@ -97,6 +98,7 @@ class DatabaseConnector:
 
 if __name__ == '__main__':
 
+	test_region = 'eu-west-1'
 	test_locale = 'en-GB'
 	test_alexa_id = (
 		"amzn1.ask.account.AFRET2RY4UHTI5N7FJTZQ3XDEVZMLZ47UZWZ6DFVPNDJLVZKDDMOVGR23QUKQMM4BK723EBA2WN3GUBCMN7A34AXII"
@@ -104,7 +106,7 @@ if __name__ == '__main__':
 		"WEYHACVQI"
 	)
 
-	db = DatabaseConnector()
+	db = DatabaseConnector(test_region)
 	db.initialize_user(test_alexa_id, test_locale)
 	db.set_boiling_scale_preference(test_alexa_id, 'soft')
 	print(db.get_user(test_alexa_id))
