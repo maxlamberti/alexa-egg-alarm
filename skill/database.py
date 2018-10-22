@@ -65,11 +65,11 @@ class DatabaseConnector:
 		except ClientError:
 			logger.error("Failed setting boiling scale preference for user %s", alexa_id, exc_info=True)
 
-	def remove_boiling_scale_preference(self, alexa_id):
+	def remove_preferences(self, alexa_id):
 		try:
 			self.table.update_item(
 				Key={'alexa_id': alexa_id},
-				UpdateExpression="REMOVE default_boiling_scale"
+				UpdateExpression="REMOVE default_boiling_scale, block_preference, last_boiling_scale"
 			)
 		except ClientError:
 			logger.error("Failed removing default boiling scale for user %s", alexa_id, exc_info=True)
@@ -80,6 +80,16 @@ class DatabaseConnector:
 				Key={'alexa_id': alexa_id},
 				UpdateExpression="SET last_boiling_scale = :val",
 				ExpressionAttributeValues={':val': boiling_scale}
+			)
+		except ClientError:
+			logger.error("Failed saving boiling scale for user %s", alexa_id, exc_info=True)
+
+	def set_block_preference(self, alexa_id):
+		try:
+			self.table.update_item(
+				Key={'alexa_id': alexa_id},
+				UpdateExpression="SET block_preference = :val",
+				ExpressionAttributeValues={':val': True}
 			)
 		except ClientError:
 			logger.error("Failed saving boiling scale for user %s", alexa_id, exc_info=True)

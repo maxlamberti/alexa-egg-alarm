@@ -40,6 +40,7 @@ def welcome_message():
 	locale = get_locale()
 	user_data = db.get_user(alexa_id)
 	default_boiling_scale = user_data.get('default_boiling_scale', '')
+	block_preference = user_data.get('block_preference', False)
 	last_boiling_scale = user_data.get('last_boiling_scale', '')
 	reprompt = interaction_model.get_response('reprompt', locale)
 
@@ -48,7 +49,7 @@ def welcome_message():
 		response = interaction_model.get_response('ask_scale', locale)
 	elif default_boiling_scale:  # returning user with a set default
 		response = interaction_model.get_response('start_default', locale, boiling_scale=default_boiling_scale)
-	elif last_boiling_scale:  # returning user with no set default
+	elif last_boiling_scale and not block_preference:  # returning user with no set default
 		response = interaction_model.get_response('ask_scale_and_default', locale, boiling_scale=last_boiling_scale)
 		session.attributes['state'] = 'might_set_default'
 	else:
@@ -87,7 +88,7 @@ def delete_preference():
 	locale = get_locale()
 	alexa_id = session.user.userId
 	response = interaction_model.get_response('delete_preferences', locale)
-	db.remove_boiling_scale_preference(alexa_id)
+	db.remove_preferences(alexa_id)
 	return question(response)
 
 
@@ -106,7 +107,7 @@ def yes_intent():
 		song_library = AudioLoader(locale)
 		song_url = song_library.get_song_url(boiling_scale)
 		return audio(response).play(song_url, offset=0)
-	else:  # something went wrong, ask for boiling scale again
+	else:  # user shouldn't be here, something went wrong
 		response = interaction_model.get_response('error', locale)
 
 	return question(response).reprompt(reprompt)
@@ -116,10 +117,12 @@ def yes_intent():
 def no_intent():
 
 	locale = get_locale()
+	alexa_id = session.user.userId
 	state = session.attributes.get('state', '')
 	reprompt = interaction_model.get_response('reprompt', locale)
 
 	if state == 'might_set_default':
+		db.set_block_preference(alexa_id)
 		response = interaction_model.get_response('dont_set_default', locale)
 	else:  # something went wrong, ask for boiling scale again
 		response = interaction_model.get_response('error', locale)
