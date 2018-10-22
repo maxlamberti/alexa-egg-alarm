@@ -7,8 +7,8 @@ class AudioLoader:
 	song_library = egg_timer_tunes
 	scale_to_time_mapping = {'hard': 11, 'medium': 7, 'soft': 6}
 
-	def __init__(self, request):
-		self.locale = request.get('locale', 'en-EN')
+	def __init__(self, locale):
+		self.locale = locale
 
 	def get_song_url(self, boiling_scale):
 		if self.locale == 'de-DE':
