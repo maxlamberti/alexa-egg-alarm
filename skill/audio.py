@@ -30,5 +30,8 @@ class AudioLoader:
 
 	@staticmethod
 	def translate(boiling_scale):
-		language_mapping = {'weich': 'soft', 'mittel': 'medium', 'hart': 'hard'}
+		language_mapping = {
+			'weich': 'soft', 'mittel': 'medium', 'hart': 'hard',
+			'soft': 'soft', 'medium': 'medium', 'hard': 'hard'
+		}
 		return language_mapping[boiling_scale]
