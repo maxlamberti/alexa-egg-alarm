@@ -91,6 +91,7 @@ def delete_preference():
 	alexa_id = session.user.userId
 	response = interaction_model.get_response('delete_preferences', locale)
 	db.remove_preferences(alexa_id)
+	logger.info("Deleting preferences for alexa_id=%s", alexa_id)
 	return question(response)
 
 
@@ -126,6 +127,7 @@ def no_intent():
 		db.set_block_preference(alexa_id)
 		response = interaction_model.get_response('dont_set_default', locale)
 	else:  # something went wrong, ask for boiling scale again
+		logger.warning("User is not where he should be. alexa_id=%s", alexa_id)
 		response = interaction_model.get_response('error', locale)
 
 	return question(response).reprompt(reprompt)

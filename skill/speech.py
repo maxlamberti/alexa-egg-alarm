@@ -12,4 +12,5 @@ class InteractionModel:
 		self.corpus = locale_to_corpus_mapping
 
 	def get_response(self, label, locale, **kwargs):
+		logger.info("Fetching sentence for label='%s', locale=%s", label, locale)
 		return self.corpus[locale][label].format(**kwargs)
