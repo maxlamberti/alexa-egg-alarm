@@ -1,5 +1,4 @@
 import logging
-from random import choice
 from skill.assets.corpus import locale_to_corpus_mapping
 
 

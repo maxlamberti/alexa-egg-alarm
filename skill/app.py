@@ -10,6 +10,7 @@ from skill.speech import InteractionModel
 from skill.loggingconf import logging_config
 from skill.database import DatabaseConnector
 
+
 env = os.environ.get('ENVIRONMENT')
 default_locale = os.environ.get('DEFAULT_LOCALE')
 region = os.environ.get('REGION')
@@ -20,6 +21,7 @@ logger = logging.getLogger(env)
 db = DatabaseConnector(region)
 
 interaction_model = InteractionModel()
+media = AudioLoader()
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -78,8 +80,7 @@ def set_timer_intent(boiling_scale):
 	response = interaction_model.get_response('start_timer', locale, boiling_scale=boiling_scale)
 	db.set_last_boiling_scale(alexa_id, boiling_scale)
 
-	song_library = AudioLoader(locale)
-	song_url = song_library.get_song_url(boiling_scale)
+	song_url = media.get_song_url(boiling_scale, region, locale)
 
 	return audio(response).play(song_url, offset=0)
 
@@ -105,8 +106,7 @@ def yes_intent():
 		boiling_scale = session.attributes['user_data'].get('last_boiling_scale', '')
 		db.set_boiling_scale_preference(alexa_id, boiling_scale)
 		response = interaction_model.get_response('set_default', locale, boiling_scale=boiling_scale)
-		song_library = AudioLoader(locale)
-		song_url = song_library.get_song_url(boiling_scale)
+		song_url = media.get_song_url(boiling_scale, region, locale)
 		return audio(response).play(song_url, offset=0)
 	else:  # user shouldn't be here, something went wrong
 		response = interaction_model.get_response('error', locale)
