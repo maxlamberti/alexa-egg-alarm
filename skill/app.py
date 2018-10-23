@@ -45,20 +45,27 @@ def welcome_message():
 	default_boiling_scale = user_data.get('default_boiling_scale', '')
 	block_preference = user_data.get('block_preference', False)
 	last_boiling_scale = user_data.get('last_boiling_scale', '')
+	num_visits = user_data.get('num_visits', 1)
 	reprompt = interaction_model.get_response('reprompt', locale)
+
+	if user_data:
+		db.update_visit(alexa_id)
 
 	if not user_data:  # first time user
 		user_data = db.initialize_user(alexa_id, locale)
 		response = interaction_model.get_response('ask_scale', locale)
 	elif default_boiling_scale:  # returning user with a set default
 		response = interaction_model.get_response('start_default', locale, boiling_scale=default_boiling_scale)
+		if num_visits % 3 == 0:  # add info message on how to reset default
+			response += interaction_model.get_response('reset_info', locale)
+		song_url = media.get_song_url(default_boiling_scale, region, locale)
+		return audio(response).play(song_url, offset=0)
 	elif last_boiling_scale and not block_preference:  # returning user with no set default
 		response = interaction_model.get_response('ask_scale_and_default', locale, boiling_scale=last_boiling_scale)
 		session.attributes['state'] = 'might_set_default'
 	else:
 		response = interaction_model.get_response('ask_scale', locale)
 
-	db.update_visit(alexa_id)
 	session.attributes['user_data'] = user_data
 
 	return question(response).reprompt(reprompt)

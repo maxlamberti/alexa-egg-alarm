@@ -36,7 +36,7 @@ class DatabaseConnector:
 			'alexa_id': alexa_id,
 			'locale': locale,
 			'last_visit': int(time.time()),
-			'num_visits': 0
+			'num_visits': 1
 		}
 
 		try:
