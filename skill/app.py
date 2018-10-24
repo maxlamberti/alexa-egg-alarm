@@ -185,5 +185,5 @@ def next_intent():
 
 
 if __name__ == '__main__':
-	# print(app.config)
+	logger.info("App Config: %s", app.config)
 	app.run()

@@ -22,7 +22,7 @@ logging_config = {
 		},
 		'PRODUCTION': {
 			'handlers': ['console'],
-			'level': 'WARNING',
+			'level': 'INFO',
 		}
 	},
 }
