@@ -12,6 +12,10 @@ Egg Alarm / Egg Timer / Eierkocher is available in Germany, UK, USA, Canada, Aus
 - [View in German store](https://www.amazon.de/Max-Lamberti-Eierkocher/dp/B078PWZNNW)
 - [View in English store](https://www.amazon.co.uk/Max-Lamberti-Egg-Timer/dp/B078PWZNNW)
 
+#### Description
+
+Do you have problems boiling your eggs? Are your egg whites too runny? Do you loose track of time and boil your eggs into unsavoury pebbles? Fret not! Whether you like your eggs hard, medium or soft boiled, this skill has got it all! Simply preboil a pot of water, place your eggs inside, and tell Egg Alarm how you like them. Egg Alarm will keep track of time and alert you with the crow of a rooster once your egg is done.
+
 ## Tech
 
 - [Zappa](https://github.com/Miserlou/Zappa) - deploy serverless Python applications
@@ -35,4 +39,4 @@ python -m skill.app
 
 Use deploy script for an automated deploy with latest virtual environment, configs and speech assets.
 
-```sh deploy.sh {all, dev, production_eu, production_us, production_eu}```
+```sh deploy.sh {all, dev, production_eu, production_us, production_au}```
