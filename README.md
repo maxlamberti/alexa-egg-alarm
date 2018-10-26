@@ -1,6 +1,6 @@
 ![eierkocher](https://s3-eu-west-1.amazonaws.com/mkl-images/shot_4.png)
 
-## alexa-egg-alarm
+## Alexa Egg Alarm
 
 ![python version](https://img.shields.io/badge/python-3.6-blue.svg)
 
