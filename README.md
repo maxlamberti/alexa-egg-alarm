@@ -1,8 +1,8 @@
 ![eierkocher](https://s3-eu-west-1.amazonaws.com/mkl-images/shot_4.png)
 
-## Alexa Egg Alarm
-
 ![python version](https://img.shields.io/badge/python-3.6-blue.svg)
+
+## Alexa Egg Alarm
 
 Alexa skill that will time your boiled eggs to perfection. 🐣
 
@@ -27,16 +27,28 @@ Do you have problems boiling your eggs? Are your egg whites too runny? Do you lo
 
 ## Setup and Deployment Instructions
 
+#### Get Assets
+
+Pull speech and audio assets from the private git submodule to `alexa-egg-alarm/skill/assets`.
+
+#### Tests
+
+Test speech and audio assets with pytest.
+
+```
+$ pytest
+```
+
 #### Run app locally:
 Use Python 3.6, install requirements.txt file, and set environment variables (example provided in [example.env](https://github.com/hexamax/alexa-egg-alarm/blob/master/example.env)).
 
 ```
-source example.env
-python -m skill.app
+$ source example.env
+$ python -m skill.app
 ```
 
 #### Deploy:
 
 Use deploy script for an automated deploy with latest virtual environment, configs and speech assets.
 
-```sh deploy.sh {all, dev, production_eu, production_us, production_au}```
+```$ sh deploy.sh {all, dev, production_eu, production_us, production_au}```
