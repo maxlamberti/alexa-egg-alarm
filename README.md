@@ -1,8 +1,8 @@
-![python version](https://img.shields.io/badge/python-3.6-blue.svg)
-
 ![eierkocher](https://s3-eu-west-1.amazonaws.com/mkl-images/shot_4.png)
 
 ## Alexa Egg Alarm
+
+![python version](https://img.shields.io/badge/python-3.6-blue.svg)
 
 Alexa skill that will time your boiled eggs to perfection. 🐣
 
