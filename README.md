@@ -23,7 +23,6 @@ Do you have problems boiling your eggs? Are your egg whites too runny? Do you lo
 - [Flask-Ask](https://github.com/johnwheeler/flask-ask) - Alexa Skills Kit for Python
 - [AWS Lambda](https://aws.amazon.com/lambda/) - serverless compute service
 - [AWS RDS](https://aws.amazon.com/rds/) - relational database service
-- [krakenex](https://github.com/veox/python3-krakenex) - API for Kraken exchange
 
 ## Setup and Deployment Instructions
 
